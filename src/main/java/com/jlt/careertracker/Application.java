@@ -5,13 +5,15 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Application implements CommandLineRunner {
+public class Application {
 
+    /**
+     * Entry point for application.
+     *
+     * @param args The args
+     */
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
 
-    public void run(String... args) throws Exception {
-        System.out.println("Hello, world!");
-    }
 }

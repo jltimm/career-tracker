@@ -7,9 +7,18 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Controller for job applications
+ */
 @RestController
 public class CareerController {
 
+    /**
+     * Grabs list of all the job applications from repository, no
+     * matter the progress
+     *
+     * @return All the careers
+     */
     @GetMapping("/careers")
     public List<Career> getCareers() {
         return new ArrayList<Career>() {{
