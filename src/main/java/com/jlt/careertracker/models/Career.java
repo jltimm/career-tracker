@@ -1,9 +1,18 @@
 package com.jlt.careertracker.models;
 
+import org.springframework.data.annotation.Id;
+
 /**
  * Data model used for careers
  */
 public class Career {
+
+    /**
+     * Unique ID used as key for MongoDB
+     */
+    @Id
+    public String id;
+
     /**
      * Name of the position (e.g. Software Engineer, Data Analyst, etc.)
      */
@@ -45,8 +54,8 @@ public class Career {
     @Override
     public String toString() {
         return String.format(
-          "Career[positionName='%s', status='%s', companyName='%s']",
-          positionName, status, companyName
+          "Career[id=%s, positionName='%s', status='%s', companyName='%s']",
+          id, positionName, status, companyName
         );
     }
 }
