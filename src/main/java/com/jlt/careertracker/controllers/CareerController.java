@@ -1,6 +1,8 @@
 package com.jlt.careertracker.controllers;
 
 import com.jlt.careertracker.models.Career;
+import com.jlt.careertracker.repositories.CareerRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,6 +16,12 @@ import java.util.List;
 public class CareerController {
 
     /**
+     * Collection where all career information lives
+     */
+    @Autowired
+    private CareerRepository careerRepository;
+
+    /**
      * Grabs list of all the job applications from repository, no
      * matter the progress
      *
@@ -21,9 +29,6 @@ public class CareerController {
      */
     @GetMapping("/careers")
     public List<Career> getCareers() {
-        return new ArrayList<Career>() {{
-            add(new Career("Software Engineer", "no response", "Company 1"));
-            add(new Career("Software Engineer", "no response", "Company 1"));
-        }};
+        return careerRepository.findAll();
     }
 }
