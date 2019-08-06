@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,12 +21,21 @@ public class CareerController {
     private CareerRepository careerRepository;
 
     /**
+     * Constructor for CareerController
+     *
+     * @param careerRepository The career repository
+     */
+    public CareerController(CareerRepository careerRepository) {
+        this.careerRepository = careerRepository;
+    }
+
+    /**
      * Grabs list of all the job applications from repository, no
      * matter the progress
      *
      * @return All the careers
      */
-    @GetMapping("/careers")
+    @GetMapping(value = "/careers")
     public List<Career> getCareers() {
         return careerRepository.findAll();
     }
