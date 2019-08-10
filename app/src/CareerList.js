@@ -7,15 +7,14 @@ class CareerList extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {careers: [], isLoading: true};
+    this.state = {careers: []};
     this.remove = this.remove.bind(this);
   }
 
   componentDidMount() {
-    this.setState({isLoading: true});
     fetch('/api/careers')
       .then(response => response.json())
-      .then(data => this.setState({careers: data, isLoading: false}));
+      .then(data => this.setState({careers: data}));
   }
 
   async remove(id) {
@@ -32,11 +31,7 @@ class CareerList extends Component {
   }
 
   render() {
-    const {careers, isLoading} = this.state;
-
-    if (isLoading) {
-      return <p>Loading...</p>;
-    }
+    const {careers} = this.state;
 
     const careerList = careers.map(career => {
       return <tr key={career.id}>
@@ -62,12 +57,12 @@ class CareerList extends Component {
           <h3>Careers</h3>
           <Table className="mt-4">
             <thead>
-            <tr>
-              <th width="20%">Position Name</th>
-              <th width="20%">Status</th>
-              <th>Company Name</th>
-              <th width="10%">Actions</th>
-            </tr>
+              <tr>
+                <th width="20%">Position Name</th>
+                <th width="20%">Status</th>
+                <th>Company Name</th>
+                <th width="10%">Actions</th>
+              </tr>
             </thead>
             <tbody>
             {careerList}

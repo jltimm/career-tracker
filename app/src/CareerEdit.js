@@ -13,9 +13,7 @@ class CareerEdit extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      item: this.emptyItem
-    };
+    this.state = {item: this.emptyItem};
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -52,7 +50,7 @@ class CareerEdit extends Component {
 
   render() {
     const {item} = this.state;
-    const title = <h2>{item.id ? 'Edit Career' : 'Add Career'}</h2>;
+    const title = <h2>{this.props.match.params.id !== 'new' ? 'Edit Career' : 'Add Career'}</h2>;
 
     return <div>
       <AppNavbar/>
