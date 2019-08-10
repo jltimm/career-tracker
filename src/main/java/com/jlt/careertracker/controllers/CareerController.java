@@ -46,13 +46,23 @@ public class CareerController {
     }
 
     /**
+     * Returns all in progress job applications
+     *
+     * @return All the in progress applications
+     */
+    @GetMapping("/careers/inProgress")
+    public List<Career> getInProgressApplications() {
+        return careerRepository.findByStatus("in progress");
+    }
+
+    /**
      * Gets an application based on its ID
      *
      * @param id ID of the application
      * @return The career if it exists, otherwise not found.
      */
     @GetMapping("/career/{id}")
-    ResponseEntity<?> getApplication(@PathVariable String id) {
+    public ResponseEntity<?> getApplication(@PathVariable String id) {
         Optional<Career> career = careerRepository.findById(id);
         return career.map(response -> ResponseEntity.ok().body(response))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
@@ -66,7 +76,7 @@ public class CareerController {
      * @throws URISyntaxException
      */
     @PostMapping("/career")
-    ResponseEntity<Career> createApplication(@Valid @RequestBody Career career) throws URISyntaxException {
+    public ResponseEntity<Career> createApplication(@Valid @RequestBody Career career) throws URISyntaxException {
         Career result = careerRepository.save(career);
         return ResponseEntity.created(new URI("/api/career/" + result.getId())).body(result);
     }
@@ -78,7 +88,7 @@ public class CareerController {
      * @return The saved career as a response entity
      */
     @PutMapping("/career")
-    ResponseEntity<Career> updateApplication(@Valid @RequestBody Career career) {
+    public ResponseEntity<Career> updateApplication(@Valid @RequestBody Career career) {
         Career result = careerRepository.save(career);
         return ResponseEntity.ok().body(result);
     }
@@ -90,7 +100,7 @@ public class CareerController {
      * @return an OK response
      */
     @DeleteMapping("/career/{id}")
-    ResponseEntity<?> deleteApplication(@PathVariable String id) {
+    public ResponseEntity<?> deleteApplication(@PathVariable String id) {
         careerRepository.deleteById(id);
         return ResponseEntity.ok().build();
     }

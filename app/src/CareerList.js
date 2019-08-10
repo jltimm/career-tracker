@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button, ButtonGroup, Container, Table } from 'reactstrap';
 import AppNavbar from './AppNavbar';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 class CareerList extends Component {
 
@@ -12,7 +12,8 @@ class CareerList extends Component {
   }
 
   componentDidMount() {
-    fetch('/api/careers')
+    const apiEndpoint = this.props.location.pathname === '/' ? '/api/careers/inProgress' : '/api/careers';
+    fetch(apiEndpoint)
       .then(response => response.json())
       .then(data => this.setState({careers: data}));
   }
@@ -32,7 +33,6 @@ class CareerList extends Component {
 
   render() {
     const {careers} = this.state;
-
     const careerList = careers.map(career => {
       return <tr key={career.id}>
         <td style={{whiteSpace: 'nowrap'}}>{career.positionName}</td>
@@ -74,4 +74,4 @@ class CareerList extends Component {
   }
 }
 
-export default CareerList;
+export default withRouter(CareerList);

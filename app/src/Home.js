@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import './App.css';
-import AppNavbar from './AppNavbar';
 import { Link } from 'react-router-dom';
 import { Button, Container } from 'reactstrap';
+import CareerList from './CareerList';
 
 class Home extends Component {
   render() {
     return (
       <div>
-        <AppNavbar/>
+        <CareerList />
         <Container fluid>
           <Button color="link"><Link to="/careers">View all applications</Link></Button>
         </Container>
