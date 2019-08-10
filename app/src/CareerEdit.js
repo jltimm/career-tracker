@@ -22,7 +22,7 @@ class CareerEdit extends Component {
 
   async componentDidMount() {
     if (this.props.match.params.id !== 'new') {
-      const career = await (await fetch(`/api/careers/${this.props.match.params.id}`)).json();
+      const career = await (await fetch(`/api/career/${this.props.match.params.id}`)).json();
       this.setState({item: career});
     }
   }
@@ -39,8 +39,7 @@ class CareerEdit extends Component {
   async handleSubmit(event) {
     event.preventDefault();
     const {item} = this.state;
-
-    await fetch('/api/careers', {
+    await fetch('/api/career', {
       method: (item.id) ? 'PUT' : 'POST',
       headers: {
         'Accept': 'application/json',

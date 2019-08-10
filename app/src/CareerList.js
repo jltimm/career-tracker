@@ -19,7 +19,7 @@ class CareerList extends Component {
   }
 
   async remove(id) {
-    await fetch(`/api/careers/${id}`, {
+    await fetch(`/api/career/${id}`, {
       method: 'DELETE',
       headers: {
         'Accept': 'application/json',

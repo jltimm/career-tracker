@@ -58,4 +58,13 @@ public class Career {
           id, positionName, status, companyName
         );
     }
+
+    /**
+     * Getter for id.
+     *
+     * @return ID of the career
+     */
+    public String getId() {
+        return id;
+    }
 }
