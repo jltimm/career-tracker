@@ -13,13 +13,13 @@ class CareerList extends Component {
 
   componentDidMount() {
     this.setState({isLoading: true});
-    fetch('/careers')
+    fetch('/api/careers')
       .then(response => response.json())
       .then(data => this.setState({careers: data, isLoading: false}));
   }
 
   async remove(id) {
-    await fetch(`/careers/${id}`, {
+    await fetch(`/api/careers/${id}`, {
       method: 'DELETE',
       headers: {
         'Accept': 'application/json',

@@ -50,7 +50,7 @@ public class CareerControllerTest {
 
     @Test
     public void shouldReturn200OK() throws Exception {
-        mockMvc.perform(get("/careers"))
+        mockMvc.perform(get("/api/careers"))
                 .andExpect(status().isOk());
     }
 }
